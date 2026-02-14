@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+        <title>Ссылки</title>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Сокращенные ссылки</h1>
+            <div>
+                <input id="longUrlInput" type="text" placeholder="Введите ссылку">
+                <button onclick="createShortUrl()">Создать</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ссылка</th>
+                        <th>Сокращенная ссылка</th>
+                        <th>Дата создания</th>
+                        <th>Количество переходов</th>
+                        <th>Управление ссылкой</th>
+                    </tr>
+                </thead>
+                <tbody  id="urlTableBody"></tbody>
+            </table>
+        </div>
+    </body>
+</html> 
