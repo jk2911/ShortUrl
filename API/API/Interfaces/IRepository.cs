@@ -10,5 +10,6 @@
         Task<string?> GetLongUrl(string shortUrl);
         void RedirectUrl (T item);
         Task<T> GetUrlByShortUrl(string shortUrl);
+        Task<bool> IsLinkCreated(string shortUrl);
     }
 }

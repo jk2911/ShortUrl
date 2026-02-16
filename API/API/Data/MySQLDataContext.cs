@@ -11,6 +11,7 @@ namespace API.Data
         public MySQLDataContext(DbContextOptions<MySQLDataContext> options) : base(options) 
         { 
             Database.EnsureCreated();
+            Database.Migrate();
         }
     }
 }

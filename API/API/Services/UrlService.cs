@@ -9,7 +9,7 @@ namespace API.Services
         public async Task<string> CreateShortUrl(string url)
         {
             using SHA256 hash = SHA256.Create();
-            return Convert.ToHexString(hash.ComputeHash(Encoding.ASCII.GetBytes(url))).Substring(0, 5);
+            return Convert.ToHexString(hash.ComputeHash(Encoding.ASCII.GetBytes(url + DateTime.Now.ToString()))).Substring(0, 5);
         }
     }
 }

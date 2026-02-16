@@ -6,11 +6,18 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+string connectionString;
+
+if (args.Length > 0)
+    connectionString = args[0];
+else
+{
+    // Add services to the container.
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+}
 
 builder.Services.AddDbContext<MySQLDataContext>(options =>
-    options.UseMySql(connectionString, new MySqlServerVersion(new Version(9, 6, 0))));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddTransient<IUrlService, UrlService>();
 builder.Services.AddTransient<IRepository<Url>, UrlRepository>();

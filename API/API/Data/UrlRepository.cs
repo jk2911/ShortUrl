@@ -50,6 +50,15 @@ namespace API.Data
                 FirstOrDefaultAsync();
         }
 
+        public async Task<bool> IsLinkCreated(string shortUrl)
+        {
+            var url = await _context.URLs.
+                Where(u => u.ShortUrl == shortUrl).
+                FirstOrDefaultAsync();
+
+            return url != null;
+        }
+
         public void RedirectUrl(Url item)
         {
             item.CountClick++;

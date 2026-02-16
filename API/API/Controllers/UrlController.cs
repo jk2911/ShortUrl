@@ -26,16 +26,24 @@ namespace API.Controllers
         [Route("AddUrl")]
         public async Task<ActionResult> AddNewUrl(string longUrl)
         {
-            var Url = new Url()
+            string shortUrl;
+
+            do
+            {
+                shortUrl = await _urlService.CreateShortUrl(longUrl);
+
+            } while ( await _repository.IsLinkCreated(shortUrl));
+
+            var newUrl = new Url()
             {
                 LongUrl = longUrl,
-                ShortUrl = await _urlService.CreateShortUrl(longUrl),
+                ShortUrl = shortUrl,
                 DateCreate = DateTime.Now,
             };
 
-            _repository.Create(Url);
+            _repository.Create(newUrl);
 
-            return Ok("");
+            return Ok("Короткая ссылка создана");
         }
         [HttpDelete]
         [Route("DeleteUrl")]
